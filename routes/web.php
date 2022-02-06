@@ -20,12 +20,15 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('cards',  ['uses' => 'CardController@showAllCards']);
-  
+    
     $router->get('cards/{id}', ['uses' => 'CardController@showCard']);
-  
+    
     $router->post('cards', ['uses' => 'CardController@create']);
-  
+    
     $router->delete('cards/{id}', ['uses' => 'CardController@delete']);
-  
+    
     $router->put('cards/{id}', ['uses' => 'CardController@update']);
+    
+    $router->put('reloadings', ['uses' => 'ReloadingController@save']);
+    
   });

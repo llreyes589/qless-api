@@ -70,7 +70,24 @@ $app->configure('app');
 | be global middleware that run before and after each request into a
 | route or middleware that'll be assigned to some specific routes.
 |
+
 */
+
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+ ]);
+ 
+ $app->register(App\Providers\CatchAllOptionsRequestsProvider::class);
+// $app->register(Fruitcake\Cors\CorsServiceProvider::class);
+// $app->configure('cors');
+// $app->middleware([
+//     // ...
+//     Fruitcake\Cors\HandleCors::class,
+// ]);
+// $app->middleware([
+//     App\Http\Middleware\CorsMiddleware::class // Add this
+
+// ]);
 
 // $app->middleware([
 //     App\Http\Middleware\ExampleMiddleware::class
@@ -113,8 +130,5 @@ $app->router->group([
 });
 
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
-$app->middleware([
-    App\Http\Middleware\CorsMiddleware::class // Add this
 
-]);
 return $app;
