@@ -30,5 +30,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->put('cards/{id}', ['uses' => 'CardController@update']);
     
     $router->put('reloadings', ['uses' => 'ReloadingController@save']);
+
+    $router->post('transactions', ['uses' => 'TransactionController@create']);
     
   });

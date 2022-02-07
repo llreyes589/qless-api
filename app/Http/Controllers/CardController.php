@@ -9,11 +9,11 @@ use \Carbon\Carbon;
 class CardController extends Controller
 {
     public function showAllCards(){
-        return Card::select(['id', 'discount_number', 'load', 'expires_at', 'created_at'])->orderBy('id', 'desc')->get();
+        return Card::with('transactions')->select(['id', 'discount_number', 'load', 'expires_at', 'created_at'])->orderBy('id', 'desc')->get();
     }
 
     public function showCard($id){
-        return Card::find($id);
+        return Card::with('transactions')->find($id);
     }
     public function update($id){
         $card = Card::find($id);
