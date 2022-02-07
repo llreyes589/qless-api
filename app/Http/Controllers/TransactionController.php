@@ -9,9 +9,10 @@ use \App\Models\Card;
 class TransactionController extends Controller
 {
     public function create(){
-        $card = Card::find(\request()->card_id);
+        $card = Card::with('transactions')->find(\request()->card_id);
         $total_load = $card->load - \request()->fare;
         $card->update(['load' => $total_load]);
-        return $card->transactions()->create(\request()->all());
+        $card->transactions()->create(\request()->all());
+        return $card->load('transactions');
     }
 }
