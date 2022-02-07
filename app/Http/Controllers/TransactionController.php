@@ -12,7 +12,6 @@ class TransactionController extends Controller
         $card = Card::find(\request()->card_id);
         $total_load = $card->load - \request()->fare;
         $card->update(['load' => $total_load]);
-        $card->transactions()->create(\request()->all());
-        return $card->with('transactions')->first();
+        return $card->transactions()->create(\request()->all());
     }
 }
